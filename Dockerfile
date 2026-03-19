@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
     libzip-dev \
     libicu-dev \
+    libcurl4-openssl-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
@@ -23,7 +24,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         mbstring \
         pdo_mysql \
         soap \
-        sockets \
         xml \
         xmlwriter \
         zip \
