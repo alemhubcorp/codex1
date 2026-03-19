@@ -31,10 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-COPY composer.json composer.lock ./
-RUN composer update enshrined/svg-sanitize --no-interaction --no-dev --prefer-dist --optimize-autoloader --no-scripts --no-security-blocking --no-audit
-
 COPY . .
+
+RUN composer update enshrined/svg-sanitize --no-interaction --no-dev --prefer-dist --optimize-autoloader --no-scripts --no-security-blocking --no-audit
 
 RUN php artisan package:discover --ansi || true \
     && chmod -R 775 storage bootstrap/cache
