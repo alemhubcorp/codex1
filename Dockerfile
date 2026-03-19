@@ -35,6 +35,7 @@ COPY . .
 
 RUN mkdir -p storage/framework/views \
     storage/framework/cache \
+    storage/framework/cache/data \
     storage/framework/sessions \
     storage/logs \
     bootstrap/cache \
