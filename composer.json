@@ -95,6 +95,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
+        "audit": {
+            "block-insecure": false
+        },
         "allow-plugins": {
             "symfony/thanks": true
         }
