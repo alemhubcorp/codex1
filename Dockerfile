@@ -33,6 +33,13 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
+RUN mkdir -p storage/framework/views \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/logs \
+    bootstrap/cache \
+    && chmod -R 777 storage bootstrap/cache
+
 RUN composer update enshrined/svg-sanitize --no-interaction --no-dev --prefer-dist --optimize-autoloader --no-scripts --no-security-blocking --no-audit
 
 RUN php artisan package:discover --ansi || true \
