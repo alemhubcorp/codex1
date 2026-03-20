@@ -166,6 +166,16 @@
     </style>
 
     @php $lang = get_system_language()->code;  @endphp
+    @php
+        $featured_categories = $featured_categories->filter(function ($category) use ($lang) {
+            $category_name = $category->getTranslation('name', $lang);
+            return stripos($category_name, 'Demo category') !== 0;
+        });
+        $hot_categories = $hot_categories->filter(function ($category) use ($lang) {
+            $category_name = $category->getTranslation('name', $lang);
+            return stripos($category_name, 'Demo category') !== 0;
+        });
+    @endphp
 
     <!-- Featured Categories -->
     @if (count($featured_categories) > 0)
