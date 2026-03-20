@@ -14,7 +14,10 @@ class HttpsProtocol {
      */
     public function handle($request, Closure $next)
     {
-        if (env('FORCE_HTTPS') == "On" && !$request->secure()) {
+        $forwardedProto = $request->headers->get('x-forwarded-proto');
+        $isProxiedHttps = is_string($forwardedProto) && strtolower($forwardedProto) === 'https';
+
+        if (env('FORCE_HTTPS') == "On" && !$request->secure() && !$isProxiedHttps) {
             return redirect()->secure($request->getRequestUri());
         }
         return $next($request);
